@@ -1,0 +1,25 @@
+{
+    "name": "com.mgs.monoui",
+    "version": "1.0.0",
+    "displayName": "Mono UI",
+    "description": "UI management in Unity app development.",
+    "unity": "2021.3",
+    "keywords": [
+        "ui",
+        "load",
+        "focus",
+        "close"
+    ],
+    "author": {
+        "name": "Mogoson",
+        "email": "mogoson@outlook.com",
+        "url": "https://github.com/mogoson"
+    },
+    "samples": [
+        {
+            "displayName": "Sample",
+            "description": "Sample for UI management.",
+            "path": "Samples~/Sample"
+        }
+    ]
+}
