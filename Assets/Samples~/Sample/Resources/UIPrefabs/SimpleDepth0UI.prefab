@@ -68,10 +68,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SimpleUI
+  m_Text: SimpleDepth0UI
 --- !u!1 &6811081845115378805
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,10 +91,10 @@ GameObject:
   - component: {fileID: 6811081845115378804}
   - component: {fileID: 6811081845115378806}
   - component: {fileID: 6811081845115378807}
-  - component: {fileID: 6811081845115378793}
-  - component: {fileID: 4590752213025089138}
+  - component: {fileID: 8980967260419497418}
+  - component: {fileID: -738154094094417415}
   m_Layer: 5
-  m_Name: SimpleUI
+  m_Name: SimpleDepth0UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6811081845115378793
+--- !u!114 &8980967260419497418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,11 +168,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6811081845115378805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806b319b744ed2748ba52a469fdaad6f, type: 3}
+  m_Script: {fileID: 11500000, guid: b580586a5eb9c654eacdc49052ebf26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 6811081843743562489}
---- !u!114 &4590752213025089138
+--- !u!114 &-738154094094417415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,6 +180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6811081845115378805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6e3e727ee498142a070a387c3bea71, type: 3}
+  m_Script: {fileID: 11500000, guid: 4195431dbb78de949855385fe0c41ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 0

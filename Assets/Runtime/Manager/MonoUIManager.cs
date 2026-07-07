@@ -11,35 +11,34 @@
  *************************************************************************/
 
 using System.Collections.Generic;
-using MGS.Singleton;
 using UnityEngine;
 
 namespace MGS.MonoUI
 {
-    public sealed class MonoUIManager : MonoSingleton<MonoUIManager>, IMonoUIManager
+    public class MonoUIManager : MonoBehaviour, IMonoUIManager
     {
         public Transform content;
 
         public IMonoUILoader Loader { set; get; }
-        private Dictionary<string, List<MonoUI>> cache = new();
+        protected Dictionary<string, List<MonoUI>> cache = new();
 
-        private void Reset()
+        protected virtual void Reset()
         {
             content = transform;
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Loader = GetComponent<IMonoUILoader>();
         }
 
-        public T Create<T>(bool isNew = false) where T : MonoUI
+        protected virtual void OnDestroy()
         {
-            var ui = isNew ? null : Find<T>();
-            if (ui != null)
-            {
-                return ui;
-            }
+            DestroyAll();
+        }
+
+        public T Create<T>() where T : MonoUI
+        {
             var key = typeof(T).Name;
             if (Loader == null)
             {
@@ -52,8 +51,18 @@ namespace MGS.MonoUI
                 Debug.LogError($"Create {key} failed: Can not load asset from path {key}");
                 return null;
             }
-            ui = Instantiate(asset, content);
+            var ui = Instantiate(asset, content);
             AddToCache(key, ui);
+            return ui;
+        }
+
+        public T CreateIfNotFind<T>() where T : MonoUI
+        {
+            var ui = Find<T>();
+            if (ui == null)
+            {
+                ui = Create<T>();
+            }
             return ui;
         }
 
@@ -77,7 +86,7 @@ namespace MGS.MonoUI
             return null;
         }
 
-        public void Destroy<T>(T ui, bool unload = false) where T : MonoUI
+        public void Destroy<T>(T ui) where T : MonoUI
         {
             var key = typeof(T).Name;
             if (cache.ContainsKey(key))
@@ -87,16 +96,13 @@ namespace MGS.MonoUI
                 if (uis.Count == 0)
                 {
                     cache.Remove(key);
+                    Loader.Unload(key);
                 }
             }
             Object.Destroy(ui.gameObject);
-            if (unload && !cache.ContainsKey(key))
-            {
-                Loader.Unload(key);
-            }
         }
 
-        public void DestroyAll(bool unload = false)
+        public void DestroyAll()
         {
             foreach (var uis in cache.Values)
             {
@@ -105,17 +111,14 @@ namespace MGS.MonoUI
                     Object.Destroy(ui.gameObject);
                 }
             }
-            if (unload)
+            foreach (var key in cache.Keys)
             {
-                foreach (var key in cache.Keys)
-                {
-                    Loader.Unload(key);
-                }
+                Loader.Unload(key);
             }
             cache.Clear();
         }
 
-        private void AddToCache(string key, MonoUI ui)
+        protected void AddToCache(string key, MonoUI ui)
         {
             if (!cache.ContainsKey(key))
             {

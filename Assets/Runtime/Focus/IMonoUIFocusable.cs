@@ -1,7 +1,7 @@
 /*************************************************************************
  *  Copyright © 2026 Mogoson All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  WorldSpaceFocusable.cs
+ *  File         :  IMonoUIFocusable.cs
  *  Description  :  Default.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
@@ -10,27 +10,10 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
-using MGS.Adaptive;
-using UnityEngine;
-
 namespace MGS.MonoUI
 {
-    public class WorldSpaceFocusable : MonoBehaviour, IFocusable
+    public interface IMonoUIFocusable
     {
-        protected ICollection<IAdaptive> adaptives;
-
-        protected virtual void Awake()
-        {
-            adaptives = GetComponents<IAdaptive>();
-        }
-
-        public virtual void Focus()
-        {
-            foreach (var adaptive in adaptives)
-            {
-                adaptive.Adapt();
-            }
-        }
+        void Focus();
     }
 }

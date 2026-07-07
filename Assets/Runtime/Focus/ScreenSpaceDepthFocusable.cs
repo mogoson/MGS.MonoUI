@@ -14,23 +14,25 @@ using UnityEngine;
 
 namespace MGS.MonoUI
 {
-    public class ScreenSpaceDepthFocusable : MonoBehaviour, IFocusable
+    public class ScreenSpaceDepthFocusable : MonoBehaviour, IMonoUIFocusable
     {
         public int depth = 0;
 
         public virtual void Focus()
         {
             var index = 0;
-            foreach (Transform child in transform.parent)
+            foreach (Transform sibling in transform.parent)
             {
-                var siblingDepth = child.GetComponent<ScreenSpaceDepthFocusable>()?.depth;
-                if (siblingDepth <= depth)
+                if (sibling == transform) continue;
+                var siblingDepth = 0;
+                var focus = sibling.GetComponent<ScreenSpaceDepthFocusable>();
+                if (focus != null)
                 {
-                    var siblingIndex = child.transform.GetSiblingIndex();
-                    if (index < siblingIndex)
-                    {
-                        index = siblingIndex;
-                    }
+                    siblingDepth = focus.depth;
+                }
+                if (depth >= siblingDepth)
+                {
+                    index = sibling.GetSiblingIndex() + 1;
                 }
             }
             transform.SetSiblingIndex(index);

@@ -17,22 +17,18 @@ namespace MGS.MonoUI.Sample
 {
     public class MonoUISample : MonoBehaviour
     {
+        public MonoUIManager uiManager;
+
         IEnumerator Start()
         {
-            var ui = MonoUIManager.Instance.Create<SimpleUI>();
+            yield return new WaitForSeconds(1.0f);
+            uiManager.Create<SimpleDepth200UI>();
 
-            yield return new WaitForSeconds(1.5f);
-            ui.text.text = "Hello Developer";
+            yield return new WaitForSeconds(1.0f);
+            uiManager.Create<SimpleDepth100UI>();
 
-            yield return new WaitForSeconds(1.5f);
-            var ui1 = MonoUIManager.Instance.Create<SimpleUI>(true);
-            var rect = ui1.transform as RectTransform;
-            var anchoredPosition = rect.anchoredPosition;
-            anchoredPosition.x = rect.rect.width + 20;
-            rect.anchoredPosition = anchoredPosition;
-
-            yield return new WaitForSeconds(1.5f);
-            MonoUIManager.Instance.DestroyAll();
+            yield return new WaitForSeconds(1.0f);
+            uiManager.Create<SimpleDepth0UI>();
         }
     }
 }

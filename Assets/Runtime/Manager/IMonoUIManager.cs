@@ -18,14 +18,16 @@ namespace MGS.MonoUI
     {
         IMonoUILoader Loader { set; get; }
 
-        T Create<T>(bool isNew = false) where T : MonoUI;
+        T Create<T>() where T : MonoUI;
+
+        T CreateIfNotFind<T>() where T : MonoUI;
 
         T Find<T>() where T : MonoUI;
 
         ICollection<T> FindAll<T>() where T : MonoUI;
 
-        void Destroy<T>(T ui, bool unload = false) where T : MonoUI;
+        void Destroy<T>(T ui) where T : MonoUI;
 
-        void DestroyAll(bool unload = false);
+        void DestroyAll();
     }
 }

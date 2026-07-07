@@ -1,24 +1,19 @@
 /*************************************************************************
  *  Copyright © 2026 Mogoson All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  ScreenSpaceTopFocusable.cs
+ *  File         :  SimpleDepth0UI.cs
  *  Description  :  Default.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  1.0.0
- *  Date         :  07/05/2026
+ *  Date         :  07/07/2026
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEngine;
 
-namespace MGS.MonoUI
+namespace MGS.MonoUI.Sample
 {
-    public class ScreenSpaceTopFocusable : MonoBehaviour, IFocusable
-    {
-        public virtual void Focus()
-        {
-            transform.SetAsLastSibling();
-        }
-    }
+    [RequireComponent(typeof(ScreenSpaceDepthFocusable))]
+    public class SimpleDepth0UI : MonoUI { }
 }

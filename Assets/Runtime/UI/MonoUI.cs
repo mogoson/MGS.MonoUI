@@ -17,11 +17,16 @@ namespace MGS.MonoUI
     public class MonoUI : MonoBehaviour, IMonoUI
     {
         public virtual bool IsShow { get { return gameObject.activeSelf; } }
-        protected IFocusable focusable;
+        protected IMonoUIFocusable focusable;
 
         protected virtual void Awake()
         {
-            focusable = GetComponent<IFocusable>();
+            focusable = GetComponent<IMonoUIFocusable>();
+        }
+
+        protected virtual void OnEnable()
+        {
+            Focus();
         }
 
         public virtual void Show()

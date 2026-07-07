@@ -2,8 +2,7 @@
     "name": "MGS.MonoUI.Sample",
     "rootNamespace": "MGS.MonoUI.Sample",
     "references": [
-        "GUID:71a7b8d5c3765d64bb92fc7f44ae2bac",
-        "GUID:bcd31b7e2bdcb4f419411c5867a0ee87"
+        "GUID:71a7b8d5c3765d64bb92fc7f44ae2bac"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

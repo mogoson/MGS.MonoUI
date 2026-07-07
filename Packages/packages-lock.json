@@ -1,18 +1,11 @@
 {
   "dependencies": {
-    "com.mgs.adaptive": {
-      "version": "https://github.com/mogoson/MGS.Adaptive.git?path=/Assets",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "e1e7c75f57beaf91786a846ed7f7afcb5b8cbe0e"
-    },
     "com.mgs.assetloader": {
       "version": "https://github.com/mogoson/MGS.AssetLoader.git?path=/Assets",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "f5d9edde8167148f1b550ad7b57f9bc2a545abb1"
+      "hash": "cba1af1365c127d01f8ae560449beebbceee9d81"
     },
     "com.mgs.assistant": {
       "version": "https://github.com/mogoson/MGS.Assistant.git?path=/Assets",
@@ -20,13 +13,6 @@
       "source": "git",
       "dependencies": {},
       "hash": "735585cde64c0fa0bb93ef59b62f402141ed861e"
-    },
-    "com.mgs.singleton": {
-      "version": "https://github.com/mogoson/MGS.Singleton.git?path=/Assets",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "ae5b588dbb1fb3d2201543730cc2df6567d63e0c"
     },
     "com.unity.collab-proxy": {
       "version": "2.3.1",
