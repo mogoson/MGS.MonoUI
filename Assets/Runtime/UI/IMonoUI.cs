@@ -14,8 +14,6 @@ namespace MGS.MonoUI
 {
     public interface IMonoUI
     {
-        bool IsShow { get; }
-
         void Show();
 
         void Focus();

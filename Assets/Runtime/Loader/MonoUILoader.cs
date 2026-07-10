@@ -10,44 +10,15 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using MGS.AssetLoader;
+using System;
 using UnityEngine;
 
 namespace MGS.MonoUI
 {
-    /// <summary>
-    /// UI loader base on UnityEngine.Resources
-    /// </summary>
-    public class MonoUILoader : MonoBehaviour, IMonoUILoader
+    public abstract class MonoUILoader : MonoBehaviour, IMonoUILoader
     {
-        public string directory = "UIPrefabs";
-        protected IAssetLoader loader = new AssetLoader.AssetLoader();
+        public abstract T Load<T>() where T : MonoUI;
 
-        public T Load<T>(string name) where T : Object
-        {
-            var path = GetPath(name);
-            return loader.Load<T>(path);
-        }
-
-        public void Unload(string name)
-        {
-            var path = GetPath(name);
-            loader.Unload(path);
-        }
-
-        public void Unload(Object asset)
-        {
-            loader.Unload(asset);
-        }
-
-        public void UnloadAll()
-        {
-            loader.UnloadAll();
-        }
-
-        protected string GetPath(string name)
-        {
-            return $"{directory}/{name}";
-        }
+        public abstract void Unload(Type type);
     }
 }

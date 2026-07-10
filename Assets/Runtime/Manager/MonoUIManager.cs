@@ -10,6 +10,7 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,19 +18,13 @@ namespace MGS.MonoUI
 {
     public class MonoUIManager : MonoBehaviour, IMonoUIManager
     {
-        public Transform content;
-
-        public IMonoUILoader Loader { set; get; }
-        protected Dictionary<string, List<MonoUI>> cache = new();
+        public Transform container;
+        public MonoUILoader loader;
+        protected Dictionary<Type, List<MonoUI>> cache = new();
 
         protected virtual void Reset()
         {
-            content = transform;
-        }
-
-        protected virtual void Awake()
-        {
-            Loader = GetComponent<IMonoUILoader>();
+            container = transform;
         }
 
         protected virtual void OnDestroy()
@@ -39,20 +34,19 @@ namespace MGS.MonoUI
 
         public T Create<T>() where T : MonoUI
         {
-            var key = typeof(T).Name;
-            if (Loader == null)
+            if (loader == null)
             {
-                Debug.LogError($"Create {key} failed: The Loader is null.");
+                Debug.LogError("Create UI failed: The Loader is null.");
                 return null;
             }
-            var asset = Loader.Load<T>(key);
+            var asset = loader.Load<T>();
             if (asset == null)
             {
-                Debug.LogError($"Create {key} failed: Can not load asset from path {key}");
+                Debug.LogError($"Create UI failed: Can not load asset for {typeof(T).Name}");
                 return null;
             }
-            var ui = Instantiate(asset, content);
-            AddToCache(key, ui);
+            var ui = Instantiate(asset, container);
+            AddToCache(ui);
             return ui;
         }
 
@@ -68,7 +62,7 @@ namespace MGS.MonoUI
 
         public T Find<T>() where T : MonoUI
         {
-            var key = typeof(T).Name;
+            var key = typeof(T);
             if (cache.ContainsKey(key))
             {
                 return cache[key][0] as T;
@@ -78,7 +72,7 @@ namespace MGS.MonoUI
 
         public ICollection<T> FindAll<T>() where T : MonoUI
         {
-            var key = typeof(T).Name;
+            var key = typeof(T);
             if (cache.ContainsKey(key))
             {
                 return cache[key].ConvertAll(ui => ui as T);
@@ -88,7 +82,7 @@ namespace MGS.MonoUI
 
         public void Destroy<T>(T ui) where T : MonoUI
         {
-            var key = typeof(T).Name;
+            var key = typeof(T);
             if (cache.ContainsKey(key))
             {
                 var uis = cache[key];
@@ -96,30 +90,28 @@ namespace MGS.MonoUI
                 if (uis.Count == 0)
                 {
                     cache.Remove(key);
-                    Loader.Unload(key);
+                    loader.Unload(key);
                 }
             }
-            Object.Destroy(ui.gameObject);
+            UnityEngine.Object.Destroy(ui.gameObject);
         }
 
         public void DestroyAll()
         {
-            foreach (var uis in cache.Values)
+            foreach (var kv in cache)
             {
-                foreach (var ui in uis)
+                foreach (var ui in kv.Value)
                 {
-                    Object.Destroy(ui.gameObject);
+                    UnityEngine.Object.Destroy(ui.gameObject);
                 }
-            }
-            foreach (var key in cache.Keys)
-            {
-                Loader.Unload(key);
+                loader.Unload(kv.Key);
             }
             cache.Clear();
         }
 
-        protected void AddToCache(string key, MonoUI ui)
+        protected void AddToCache(MonoUI ui)
         {
+            var key = ui.GetType();
             if (!cache.ContainsKey(key))
             {
                 cache.Add(key, new List<MonoUI>());

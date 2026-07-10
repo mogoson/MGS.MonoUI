@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7725da11f54ea0f488492ffbe2cc901f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 1784038341}
+  uiManager: {fileID: 1784038342}
 --- !u!1 &240130299
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,8 +425,8 @@ GameObject:
   - component: {fileID: 1784038339}
   - component: {fileID: 1784038338}
   - component: {fileID: 1784038337}
-  - component: {fileID: 1784038341}
   - component: {fileID: 1784038342}
+  - component: {fileID: 1784038341}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -525,10 +525,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784038336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a57fed4fdb5397b46961834457fb32e3, type: 3}
+  m_Script: {fileID: 11500000, guid: d316a4d18ce12a24b9a2e2604476d122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: {fileID: 1784038340}
+  directory: UIPrefabs
 --- !u!114 &1784038342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,7 +538,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784038336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae0dcaba1e02384bade9a2c14572d7e, type: 3}
+  m_Script: {fileID: 11500000, guid: a57fed4fdb5397b46961834457fb32e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directory: UIPrefabs
+  container: {fileID: 1784038340}
+  loader: {fileID: 1784038341}

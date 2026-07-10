@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.mgs.assetloader": {
-      "version": "https://github.com/mogoson/MGS.AssetLoader.git?path=/Assets",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "cba1af1365c127d01f8ae560449beebbceee9d81"
-    },
     "com.mgs.assistant": {
       "version": "https://github.com/mogoson/MGS.Assistant.git?path=/Assets",
       "depth": 0,

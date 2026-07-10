@@ -16,8 +16,6 @@ namespace MGS.MonoUI
 {
     public interface IMonoUIManager
     {
-        IMonoUILoader Loader { set; get; }
-
         T Create<T>() where T : MonoUI;
 
         T CreateIfNotFind<T>() where T : MonoUI;

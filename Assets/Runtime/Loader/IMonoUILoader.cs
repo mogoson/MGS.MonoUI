@@ -10,9 +10,14 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using MGS.AssetLoader;
+using System;
 
 namespace MGS.MonoUI
 {
-    public interface IMonoUILoader : IAssetLoader { }
+    public interface IMonoUILoader
+    {
+        T Load<T>() where T : MonoUI;
+
+        void Unload(Type type);
+    }
 }
