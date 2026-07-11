@@ -46,14 +46,6 @@ namespace MGS.MonoUI
 
     public abstract class MonoUI<T> : MonoUI, IMonoUI<T>
     {
-        protected T data;
-
-        public void Refresh(T data)
-        {
-            this.data = data;
-            OnRefresh(data);
-        }
-
-        protected abstract void OnRefresh(T data);
+        public abstract void Refresh(T data);
     }
 }
